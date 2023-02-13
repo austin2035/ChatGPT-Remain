@@ -1,0 +1,72 @@
+.layout {
+  width: 100%;
+}
+
+.guider {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background: white;
+  border-right: 1px solid #e0e2d9;
+  backdrop-filter:  saturate(180%) blur(20px);
+  width: 260px;
+}
+
+.guider-wrapper {
+  padding: 3px;
+  height: 100vh;
+}
+
+.guider-wrapper .header {
+  padding: 10px;
+}
+
+.guider-wrapper .nav {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.guider-wrapper .nav .link {
+  padding: 0px;
+}
+
+.guider-wrapper .nav .logo {
+  padding: 6px;
+}
+
+.guider-wrapper .nav .logo img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  padding: 8px;
+}
+
+
+.guider-wrapper .nav .logo img:hover {
+  background: #047ef91c;
+}
+
+.guider-wrapper .nav a.item {
+  font-size: 19px;
+  font-weight: 600;
+  border-radius: 16px;
+  padding: 8px 15px;
+  text-decoration: none;
+  color: black;
+  display: inline-flex;
+  align-items: center;
+}
+
+
+.guider-wrapper .nav a.item .text {
+  padding-left: .5em;
+}
+
+.guider-wrapper .nav a.item:hover {
+  background: #f2f2f2;
+}
+
+.guider-wrapper .nav a.item img {
+  width: 24px;
+}

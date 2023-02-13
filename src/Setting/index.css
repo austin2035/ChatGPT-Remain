@@ -1,0 +1,48 @@
+.setting-main .setting-wrapper {
+  min-width: 500px;
+  padding: 15px;
+  border-radius: 10px;
+  background: white;
+}
+
+.setting-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.setting-main .desc {
+  font-weight: 600;
+}
+
+.setting-main .key-wrapper {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid white;
+  margin-bottom: 10px;
+  background-color: #f2f2f2;
+  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1) 0s;
+}
+
+.setting-main .key-wrapper:hover {
+  border: 2px solid black;
+}
+
+
+.setting-main .key-wrapper .key {
+  padding: 10px 0px 0px;
+  margin-left: 10px;
+  color: rgb(103, 107, 95);
+}
+
+.setting-main .key-wrapper input {
+  background-color: #f2f2f2;
+  width: 90%;
+  margin-left: 10px;
+  border: none;
+  padding: 5px 0px 10px;
+  font-size: 16px;
+  outline: none;
+}
