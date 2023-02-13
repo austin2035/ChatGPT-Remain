@@ -16,6 +16,7 @@ export default class Home extends React.Component {
       isLoading: false
     }
     this.handleSend = this.handleSend.bind(this);
+    this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
   chatRef = React.createRef();
@@ -42,7 +43,7 @@ export default class Home extends React.Component {
     return str;
   }
 
-  
+
   completions() {
     let { chatList } = this.state;
 
@@ -54,7 +55,7 @@ export default class Home extends React.Component {
         prompt += ` ChatGPT: ${item.text}\n\n`
       }
     });
-    prompt +=  `\nChatGPT: `;
+    prompt += `\nChatGPT: `;
 
     console.log("completions 接受到的", chatList)
 
@@ -83,8 +84,17 @@ export default class Home extends React.Component {
         this.updateScroll()
         console.log("completions 执行完返回的 chatList", this.state.chatList)
       })
-
     }).catch(err => {
+      if (err.error.type === "invalid_request_error") {
+        this.setState({
+          isLoading: false,
+          chatList: [...chatList, { id: this.generateID(), type: 2, text: "你的 OpenAI KEY 有误，请检查后重新输入" }]
+        }, () => {
+          this.updateScroll()
+        })
+        return;
+      }
+
       this.setState({
         isLoading: false,
         chatList: [...chatList, { id: this.generateID(), type: 2, text: "出错了" }]
@@ -100,9 +110,9 @@ export default class Home extends React.Component {
     if (this.state.msg === "") {
       return;
     };
-    
+
     // 正在加载中，返回
-    if(this.state.isLoading) {
+    if (this.state.isLoading) {
       return;
     }
 
@@ -125,8 +135,14 @@ export default class Home extends React.Component {
     this.chatRef.current.scrollTop = this.chatRef.current.scrollHeight;
   }
 
+  handleKeyDown(e) {
+    if (e.keyCode === 13 && !e.shiftKey) {
+      this.handleSend();
+    }
+  }
+
   render() {
-    return <div className="chat-main content">
+    return <div className="chat-main content" onKeyUp={this.handleKeyDown}>
       <div className="chat-wrapper">
         <div className="chat-content" ref={this.chatRef} id="chat">
           {this.state.chatList.length > 0 &&
