@@ -54,6 +54,7 @@ export default class Home extends React.Component {
         prompt += ` ChatGPT: ${item.text}\n\n`
       }
     });
+    prompt +=  `\nChatGPT: `;
 
     console.log("completions 接受到的", chatList)
 
@@ -65,7 +66,7 @@ export default class Home extends React.Component {
         "model": "text-davinci-003",
         "prompt": prompt,
         "temperature": 0.9,
-        "max_tokens": 200,
+        "max_tokens": 1000,
         "top_p": 1,
         "frequency_penalty": 0,
         "presence_penalty": 0.6,
@@ -95,9 +96,16 @@ export default class Home extends React.Component {
 
 
   handleSend() {
+    // 消息为空，返回
     if (this.state.msg === "") {
       return;
     };
+    
+    // 正在加载中，返回
+    if(this.state.isLoading) {
+      return;
+    }
+
     this.setState({
       isLoading: true,
       msg: "",
